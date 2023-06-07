@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'io.freefair.aspectj.post-compile-weaving' version '6.3.0'
+}
+
+group 'com.dtbell99'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    aspect 'software.amazon.lambda:powertools-logging:1.15.0'
+    aspect 'software.amazon.lambda:powertools-tracing:1.15.0'
+    aspect 'software.amazon.lambda:powertools-metrics:1.15.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
