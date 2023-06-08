@@ -5,10 +5,12 @@ import org.apache.logging.log4j.Logger;
 import software.amazon.lambda.powertools.logging.LoggingUtils;
 
 public class LoggerUtil {
+
+    /** The internal memory for the written bytes. */
     Logger log = LogManager.getLogger();
 
     public LoggerUtil() {
-        LoggingUtils.appendKey("name", "david");
+        addContext("boundedContext", "devx");
     }
 
     public void addContext(String name, String value) {
@@ -30,4 +32,5 @@ public class LoggerUtil {
     public void debug(String message) {
         log.debug(message);
     }
+
 }

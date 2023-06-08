@@ -28,3 +28,4 @@ tmp
 .DS_Store
 .dccache
 .gradle
+logoutput.json
