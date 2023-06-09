@@ -1,9 +1,6 @@
 package com.dtbell99;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -12,19 +9,19 @@ import java.io.PrintStream;
 
 public class LoggerUtilTest {
 
-    private final PrintStream standardOut = System.out;
+    //private final PrintStream standardOut = System.out;
     private final static ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @AfterAll
     public static void writeOutput() {
-        try(OutputStream outputStream = new FileOutputStream("logoutput.json")) {
+        try (OutputStream outputStream = new FileOutputStream("logoutput.json")) {
             outputStreamCaptor.writeTo(outputStream);
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -45,18 +42,15 @@ public class LoggerUtilTest {
         logger.warn("Warn Message");
         String output = outputStreamCaptor.toString()
                 .trim();
-
         Assertions.assertTrue(output.contains("\"level\":\"WARN\",\"loggerName\":\"com.dtbell99.LoggerUtil\",\"message\":\"Warn Message\""));
     }
 
     @Test
     public void whenDebugMethodExecuted_thenCorrectOutputProduced() {
-
         LoggerUtil logger = new LoggerUtil();
         logger.debug("Debug Message");
         String output = outputStreamCaptor.toString()
                 .trim();
-
         Assertions.assertTrue(output.contains("\"level\":\"DEBUG\",\"loggerName\":\"com.dtbell99.LoggerUtil\",\"message\":\"Debug Message\""));
     }
 
@@ -66,7 +60,6 @@ public class LoggerUtilTest {
         logger.error("Error Message");
         String output = outputStreamCaptor.toString()
                 .trim();
-
         Assertions.assertTrue(output.contains("\"level\":\"ERROR\",\"loggerName\":\"com.dtbell99.LoggerUtil\",\"message\":\"Error Message\""));
     }
 
@@ -78,6 +71,5 @@ public class LoggerUtilTest {
         String output = outputStreamCaptor.toString()
                 .trim();
         Assertions.assertTrue(output.contains("\"username\":\"dave\""));
-
     }
 }
