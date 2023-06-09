@@ -6,11 +6,15 @@ import software.amazon.lambda.powertools.logging.LoggingUtils;
 
 public class LoggerUtil {
 
-    /** The internal memory for the written bytes. */
     Logger log = LogManager.getLogger();
 
     public LoggerUtil() {
-        addContext("boundedContext", "devx");
+        addContext("ENVIRONMENT", System.getenv("ENVIRONMENT"));
+        addContext("LOG_LEVEL", System.getenv("LOG_LEVEL"));
+        addContext("SERVICE_NAME", System.getenv("SERVICE_NAME"));
+        addContext("boundedContext", System.getenv("BOUNDED_CONTEXT"));
+        addContext("valueStream", System.getenv("VALUE_STREAM"));
+        addContext("domain", System.getenv("DOMAIN"));
     }
 
     public void addContext(String name, String value) {

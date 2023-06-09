@@ -6,10 +6,10 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="JsonLogger" level="DEBUG" additivity="false">
+        <Logger name="JsonLogger" level="INFO" additivity="false">
             <AppenderRef ref="JsonAppender"/>
         </Logger>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="JsonAppender"/>
         </Root>
     </Loggers>

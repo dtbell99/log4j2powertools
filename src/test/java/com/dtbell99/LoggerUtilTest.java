@@ -72,4 +72,18 @@ public class LoggerUtilTest {
                 .trim();
         Assertions.assertTrue(output.contains("\"username\":\"dave\""));
     }
+
+    @Test
+    public void whenConstructorExecutes_thenLogContainsCorrectFields() {
+        LoggerUtil logger = new LoggerUtil();
+        logger.info("Test Context Environment Variables");
+        String output = outputStreamCaptor.toString()
+                .trim();
+        Assertions.assertTrue(output.contains("\"ENVIRONMENT\":"));
+        Assertions.assertTrue(output.contains("\"LOG_LEVEL\":"));
+        Assertions.assertTrue(output.contains("\"SERVICE_NAME\":"));
+        Assertions.assertTrue(output.contains("\"boundedContext\":"));
+        Assertions.assertTrue(output.contains("\"valueStream\":"));
+        Assertions.assertTrue(output.contains("\"domain\":"));
+    }
 }
