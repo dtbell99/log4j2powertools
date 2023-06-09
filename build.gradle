@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'io.freefair.aspectj.post-compile-weaving' version '6.3.0'
+    id 'jacoco'
 }
 
 group 'com.dtbell99'
@@ -20,6 +21,21 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('coverage')
 }
 
 sourceCompatibility = 11
