@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'io.freefair.aspectj.post-compile-weaving' version '6.3.0'
     id 'jacoco'
+    //id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group 'com.dtbell99'
@@ -13,8 +14,6 @@ repositories {
 
 dependencies {
     aspect 'software.amazon.lambda:powertools-logging:1.15.0'
-    aspect 'software.amazon.lambda:powertools-tracing:1.15.0'
-    aspect 'software.amazon.lambda:powertools-metrics:1.15.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
@@ -35,7 +34,6 @@ jacocoTestReport {
 
 jacoco {
     toolVersion = "0.8.8"
-    reportsDirectory = layout.buildDirectory.dir('coverage')
 }
 
 sourceCompatibility = 11
